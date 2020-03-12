@@ -43,8 +43,9 @@ public class PersonController {
             cluster.getSession().execute(sb.toString());
     } 
     
-    public Person findById(Long id){
-        String qry = "select id,firstname,lastname from demo.person where id = " + id + ";";
+    public Person findById(String id){
+        String qry = "select id,firstname,lastname from demo.person where id = '" + id + "';";
+        LOGGER.info(qry);
         ResultSet rs = cluster.getSession().execute(qry);
         return rs
                  .all()
@@ -55,6 +56,7 @@ public class PersonController {
     
     public List<Person> findAll(){
         String qry = "select id,firstname,lastname from demo.person;";
+        LOGGER.info(qry);
         ResultSet rs = cluster.getSession().execute(qry);
         return rs
                  .all()
@@ -70,7 +72,7 @@ public class PersonController {
                 .append("(id, firstname, lastname) ")
                 .append(" VALUES(")
                 .append(" '"+ uuid.toString() +"',")
-                .append(" '"+ person.getFirtName() +"',")
+                .append(" '"+ person.getFirstName() +"',")
                 .append(" '"+ person.getLastName() +"'")
                 .append(");");
         LOGGER.info(sb.toString());
@@ -86,14 +88,14 @@ public class PersonController {
         StringBuilder sb = new StringBuilder("UPDATE ")
                 .append(SCHEMA +"." + TABLE)
                 .append(" set  ");
-                if(person.getFirtName() != null){
-                    sb.append(" firstname = '"+ person.getFirtName() +"' ");
+                if(person.getFirstName() != null){
+                    sb.append(" firstname = '"+ person.getFirstName() +"' ");
                 }
                 if(person.getLastName() != null){
-                    sb.append( person.getFirtName() != null ? ", " : " ");
+                    sb.append( person.getFirstName() != null ? ", " : " ");
                     sb.append(" lastname = '"+ person.getLastName() +"' ");
                 }
-                sb.append(" WHERE id = '" + person.getId() +"' ;");
+                sb.append(" WHERE id = '" + person.getId() +"';");
         LOGGER.info(sb.toString());
         ResultSet rs = cluster.getSession().execute(sb.toString());
          return rs
@@ -103,10 +105,10 @@ public class PersonController {
                  .findFirst().orElse(new Person());
     }
     
-    public void delete(Long id){
+    public void delete(String id){
          StringBuilder sb = new StringBuilder("DELETE FROM ")
                 .append(SCHEMA +"." + TABLE)
-                .append(" WHERE ID = " + id)
+                .append(" WHERE ID = '" + id + "';")
                 .append(";");
             LOGGER.info(sb.toString());
             cluster.getSession().execute(sb.toString());

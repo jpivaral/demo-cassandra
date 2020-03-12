@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Person implements Serializable {
     
     private String id;
-    private String firtName;
+    private String firstName;
     private String lastName;
     
 }

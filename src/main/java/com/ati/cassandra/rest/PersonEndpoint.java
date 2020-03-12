@@ -36,7 +36,7 @@ public class PersonEndpoint {
     
     @GET
     @Path("/{id}")
-    public Response findById(@PathParam("id") final Long id) {
+    public Response findById(@PathParam("id") final String id) {
         return Response.ok(personController.findById(id)).build(); 
     }
     
@@ -49,7 +49,7 @@ public class PersonEndpoint {
     
     @DELETE
     @Path("/{id}")
-    public Response delete(@PathParam("id") final Long id) {
+    public Response delete(@PathParam("id") final String id) {
         personController.delete(id);
         return Response.noContent().build();
     }
