@@ -11,6 +11,8 @@
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <maven.compiler.source>1.8</maven.compiler.source>
     <payaraVersion>5.194</payaraVersion>
+    <lombokVersion>1.18.12</lombokVersion>
+    <cassandraVersion>3.1.0</cassandraVersion>
     <final.name>cassandra</final.name>
   </properties>
   <dependencies>
@@ -24,7 +26,13 @@
     <dependency>
         <groupId>com.datastax.cassandra</groupId>
         <artifactId>cassandra-driver-core</artifactId>
-        <version>3.1.0</version>
+        <version>${cassandraVersion}</version>
+    </dependency>
+    <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombokVersion}</version>
+            <scope>provided</scope>
     </dependency>
   </dependencies>
   <build>
