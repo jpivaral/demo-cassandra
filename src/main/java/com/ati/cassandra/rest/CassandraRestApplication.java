@@ -1,4 +1,4 @@
-package com.ati.cassandra;
+package com.ati.cassandra.rest;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.ApplicationPath;
@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
 /**
  *
  */
-@ApplicationPath("/data")
+@ApplicationPath("/api")
 @ApplicationScoped
 public class CassandraRestApplication extends Application {
 }

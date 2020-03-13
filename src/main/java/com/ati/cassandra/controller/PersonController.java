@@ -67,6 +67,7 @@ public class PersonController {
     
     public Person create(Person person){
         UUID uuid = UUID.randomUUID();
+        person.setId(uuid.toString());
         StringBuilder sb = new StringBuilder("INSERT INTO ")
                 .append(SCHEMA +"." + TABLE)
                 .append("(id, firstname, lastname) ")
@@ -76,12 +77,8 @@ public class PersonController {
                 .append(" '"+ person.getLastName() +"'")
                 .append(");");
         LOGGER.info(sb.toString());
-        ResultSet rs = cluster.getSession().execute(sb.toString());
-         return rs
-                 .all()
-                 .stream()
-                 .map( r -> new Person( r.getString("id"),r.getString("firstname"), r.getString("lastname")))
-                 .findFirst().orElse(new Person());
+        cluster.getSession().execute(sb.toString());
+        return person;
     }
     
     public Person update(Person person){
@@ -98,11 +95,7 @@ public class PersonController {
                 sb.append(" WHERE id = '" + person.getId() +"';");
         LOGGER.info(sb.toString());
         ResultSet rs = cluster.getSession().execute(sb.toString());
-         return rs
-                 .all()
-                 .stream()
-                 .map( r -> new Person( r.getString("id"),r.getString("firstname"), r.getString("lastname")))
-                 .findFirst().orElse(new Person());
+         return findById(person.getId());
     }
     
     public void delete(String id){
