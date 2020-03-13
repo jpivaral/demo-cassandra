@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Create a cassandra docker container (only for demo purpose)
+Create a cassandra docker container (only for demo purposes)
 
 sudo docker run --name cassandra -p 9042:9042 -d cassandra:latest
 
