@@ -1,4 +1,4 @@
-# Demo cassandra application and payarar micro
+# Demo cassandra application and payara micro
 
 ## Introduction
 
