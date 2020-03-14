@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  cassandra:
+    image: 'cassandra'
+    ports:
+        - 9042:9042
+  payara-cassandra:
+    build: 
+      context: .
+    depends_on:
+      - cassandra
+    ports:
+      - 8080:8080
+    network_mode: "host"
