@@ -20,4 +20,4 @@ WITH REPLICATION = {
 
 To launch the test page, open your browser at the following URL
 
-    http://localhost:8080/api/persons
+    http://localhost:8080/cassandra/api/persons
